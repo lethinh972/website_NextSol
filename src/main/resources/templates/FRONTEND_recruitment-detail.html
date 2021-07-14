@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>admin</title>
+<div th:replace="header :: myHeader"></div>
+<link rel="stylesheet" type="text/css" href="@../../../../../css/service.css?v1">
+</head>
+<style>
+	body{
+	width: 1519.2px;
+	}
+</style>
+<body>
+
+
+
+
+
+    
+
+<div class="bocuc">
+ 
+	<div class="trai">
+	
+			  <ul th:each="s:${allRecruiment}">
+			    <li><a class="dropdown-item" th:href="@{/home/recruitment/{id}/{alt}(id=${s.id},alt=${s.job_name})}"><p th:text="${s.job_name}"></p></a></li>
+			  </ul>
+			
+			  
+			  <div class="card mb-3">
+				  <img src="https://cmcts.com.vn/media/cache/data/JN5nokNySO-cr-1366x675.jpg" class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">0981120071</h5>
+				    <p class="card-text">địa chỉ: SỐ 2-NGÁCH 18-NGÕ 629-KIM MÃ-BA ĐÌNH-HÀ NỘI</p>
+				    <p class="card-text">WEBSITE: <a href="https://nextsol.vn/"><code>nextsol.vn</code></a></p>
+				    <p class="card-text">EMAIL: <a href="#"><code>tienphuong1324@gmail.com</code></a></p>
+				    <p class="card-text">ĐIỆN THOẠI: 0981120071</p>
+				  </div>
+			  </div>
+	
+	 </div>
+	 
+	 <div class="phai">
+	 
+	 
+	 
+			 <div class="card mb-3" th:object="${recruitmentDetail}">
+						  <img th:src="${recruitmentDetail.image_link}" class="card-img-top" alt="..." style="height: 400px">
+						  <div class="card-body">
+					        <h5 class="card-title" th:text="${recruitmentDetail.job_name}"></h5>
+					        <p class="card-text" >loại hình: <b th:text="${recruitmentDetail.type}"></b></p>
+					        <p class="card-text" >mức lương: <b th:text="${recruitmentDetail.salary}"></b></p>
+					        <p class="card-text" >yêu cầu kinh nghiệm: <b th:text="${recruitmentDetail.experience}"></b></p>
+					        <p class="card-text" >hạn nộp hồ sơ: <b th:text="${recruitmentDetail.expire_on}"></b></p>
+					       	<h5 class="card-title">MÔ TẢ CÔNG VIỆC :</h5>
+					        <p class="card-text" th:utext="${recruitmentDetail.details}"></p>
+					      </div>
+			</div>
+			
+
+	</div>
+</div>
+
+			
+
+
+
+<div th:insert="footer :: myFooter"></div>
+</body>
+</html>

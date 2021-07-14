@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>admin</title>
+
+<div th:replace="header :: myHeader"></div>
+<link type="text/css" rel="stylesheet" href="@../../../css/index.css?V3">
+<link rel="stylesheet" type="text/css" href="@../../../css/slide.css?V2">
+<link rel="icon" type="image/x-icon" href="@../../../css/favicon.png">
+</head>
+<style>
+	body{
+	width: 1519.2px;
+	}
+</style>
+<body>
+
+
+
+<!-- --------------------------------------------------banner--------------------------------------------------------------------- -->
+
+<div class="galleryContainer">
+	<div style="text-align: center;">
+		<h3>CÔNG TY CỔ PHẦN GIẢI PHÁP VÀ SÁNG TẠO NEXTSOL</h3>
+	</div>
+    <div class="slideShowContainer" >
+        <div id="playPause" onclick="playPauseSlides()"></div>
+        <div onclick="plusSlides(-1)" class="nextPrevBtn leftArrow"><span class="arrow arrowLeft"></span></div>
+        <div onclick="plusSlides(1)" class="nextPrevBtn rightArrow"><span class="arrow arrowRight"></span></div>
+        <div class="captionTextHolder"><p class="captionText slideTextFromTop"></p></div>
+        
+        <div class="imageHolder" th:each="n : ${banner}">
+            <img th:src="${n.image}">
+           	<p class="captionText" th:text="${n.caption}"></p>
+        </div>
+        
+    </div>
+    <div id="dotsContainer"></div>
+</div><br><br>
+<script src="@../../../css/myScript.js"></script>
+	<!--  __________________________________________________________________________________________-->
+	
+
+
+<!-- main -->
+		<div id="tieude">
+			<div id="bocuc_tieude">
+			
+				<a th:href="@{/home/product}" style="text-decoration: none">
+					<div class="tieude1" style="width: 380px;height: 165px;margin-top: 30px;border :black solid 1px;">
+						<img width="52" height="52" src="@../../../css/img/sp.ico" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="logodcv">
+						<p><span>CÁC SẢN PHẨM TIÊU BIỂU</span><br>
+	                	<i>các sản phẩm tiêu biểu</i></p>
+					</div>
+				</a>
+				
+				<a th:href="@{/home/service/1/phai-cu-nhan-luc-cntt}" style="text-decoration: none">
+				<div class="tieude2" style="width: 380px;height: 165px;margin-top: 30px;border :black solid 1px;">
+					<img width="52" height="52" src="@../../../css/img/sv.png" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="digital-support">
+					<p><span>DỊCH VỤ NỔI BẬT</span><br>
+                	<i>dịch vụ nổi bật</i></p>
+				</div>
+				</a>
+				
+				<a th:href="@{/home/award}" style="text-decoration: none">
+				<div class="tieude3" style="width: 380px;height: 165px;margin-top: 30px;border :black solid 1px;">
+					<img width="53" height="53" src="@../../../css/img/gt.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="td3">
+					<p><span>GIẢI THƯỞNG VÀ CHÍNH TRỊ</span><br>
+                	<i>giải thưởng và chính trị</i></p>
+				</div>
+				</a>
+				
+			</div>
+		</div>
+		
+		<!--  -->
+		
+		
+
+	<!-- dịch vụ nổi bật**************************************************************************** -->
+
+	<div id="wrapper">
+		<div id="extra" style="width: 1135px;margin-left: 180px;">
+			<div class="title" style="text-align: center">
+				<h3 style="color:#1C887E;" >DỊCH VỤ NỔI BẬT</h3>
+				<hr style="margin-bottom: 30px;background: #1C887E;">
+			</div>
+
+
+			<div class="card-columns" >
+
+				<div class="card h-100" th:each="s,iterStat : ${service}" style="height: 461px;border:none;">
+					<div style="display: flex;">
+						<img th:src="${s.logo}" style="width: 35px; height: 35px;" >
+						<h4 style="margin-left: 20px" th:utext="${s.service_name}"></h4>
+					</div>
+					<div class="card-body" id="dvnb">
+						<a th:href="@{/home/service/{id}/{alt}(id=${s.id},alt=${s.alt_name})}"><img style="height: 215px;" class="card-img-top" th:src="${s.image_link}" alt="Card image cap"></a>
+							
+					</div>
+					<div class="card-body" id="dvnb" style="height: 135px;">
+						<p class="card-text" th:utext="${#strings.substringBefore(s.short_description,'.')}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- CÁC DỰ ÁN TIÊU BIỂU++++++++++++++++++++++++++++++++++++++++++++++++++++++++++== -->
+
+	<div class="featured-customers" style="background: #55a2d6;">
+		<div  style="width: 1135px;margin-left: 180px;">
+			<div  style="text-align: center;">
+				<h3 style="color:white;margin-top: 70px;">DỰ ÁN TIỂU BIỂU</h3>
+				<hr style="margin-bottom: 30px;background: white;">
+			</div>
+			<div class="row" style="margin-top: 30px;">
+
+				<div class="clear-fix wow slideInLeft  a-customer col-lg-6 col-md-6 col-sm-12 col-xs-12 animated" th:each="pro,iterStat : ${project}" >
+					<a  th:href="@{/home/project/{id}/{name}(id=${pro.id},name=${pro.name})}" id="duAn"><button style="color:black" type="button" class="btn btn-primary btn-lg btn-block"th:text="${pro.name}"></button></a>
+				</div>
+
+			</div>
+		</div><br><br>
+	</div><br><br>
+
+
+
+
+
+
+
+	<!--nhan xet cua khac hang++++++++++++++++++++++++++++++++++++++++++++++  -->
+	<div style="width: 1519.2px;" >
+		<div  id="thinhhihi" style="width: 1135px;margin-left: 180px;border:none;">
+			<div >
+					<h3 style="text-align: center;color:#1C887E;">NHẬN XÉT CỦA KHÁCH HÀNG</h3>
+					<hr style="margin-bottom: 30px;background:#1C887E;">
+				</div>
+			<div class="card-body text-info" >
+				<div class="card-columns" id="nhanxet_hover">		
+					<div class="card h-100" th:each="cm,iterStat : ${customercomment}" style="display: flex;">
+						<div style="display: flex;"> 
+							<div >
+								<img class="card-img-top" src="@../../../css/img/persionIcon.jpg" style="width: 70px; height: 70px;" alt="Card image cap" >
+							</div>
+							
+							<div>
+								<p  th:text="${cm.name}"></p>
+								<hr style="background: red;width: 250px;">
+								<p style="font-style: italic;" class="card-title" th:text="${cm.company}"></p>
+							</div>
+						</div>
+						<div class="card-body" style="height: 150px">
+							
+							<p style="font-style: italic;"  th:text="${cm.comment}"></p>
+						</div>
+	
+					</div>
+					
+		
+				</div>
+			</div>
+		</div><br><br>
+	</div>
+	
+	
+	<!--  bản tin nổi bật+++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+	<div style="text-align: center;">
+		<h3 style="text-align: center;color:#1C887E;">BẢN TIN NỔI BẬT</h3>
+		<hr style="margin-bottom: 30px;background:#1C887E;">
+	</div>
+
+<div class="slider">
+  <div class="slide" id="slide-1">
+  		<div class="row row-cols-md-10" >
+		  <div class="col mb-4" th:each="n : ${news}">
+		    <div class="card h-100" id="dvnb">
+		      <a th:href="@{/home/new}"><img th:src="${n.cover_image}" class="card-img-top" alt="..."></a>
+		      <div class="card-body">
+		        <h5 class="card-title" th:text="${n.name}"></h5>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+  </div>
+</div>
+
+
+
+
+
+
+
+
+	<div th:insert="footer :: myFooter"></div>

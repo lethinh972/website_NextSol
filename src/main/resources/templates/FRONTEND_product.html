@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>admin</title>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" type="text/javascript" async defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript" async defer></script>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="../../../css/product.css">
+  
+<div th:replace="header :: myHeader"></div>
+<style type="text/css">
+	.card-body:hover img{
+	 	transform: scale(1.05);
+	 	transition: 1s;
+	}
+body{
+width: 1519.2px;
+}
+</style>
+
+</head>
+<body>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/home/product/page/1}" style="margin-right: 20px;">
+	    <input type="hidden" name="sortField" th:value="${sortField}">
+		<input type="hidden" name="sortDir" th:value="${sortDir}">
+		
+      <input class="form-control mr-sm-2" type="search" th:value="${keyword}" aria-label="Search" style="width: 200px;height: 40px" name="keyword">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">TÌM KIẾM</button>
+    </form><br>
+<div class="row row-cols-1 row-cols-md-4">
+
+	<div class="card" th:each="pro:${list}">
+		<div class="card-body">
+			<a href="#"><img th:src="${pro.image}" class="card-img-top" id="product" ></a>
+			  <ul class="list-group list-group-flush">
+			    <li class="list-group-item"><b th:text="${pro.name}"></b></li>
+			    <li class="list-group-item"><p th:utext="${pro.description}"></p></li>
+
+			  </ul>
+			  
+		</div>
+		<!-- button click download -->
+			    <div class="page-content page-container" id="page-content">
+				     <div class="padding">
+				         <div class="row container d-flex justify-content-center">
+				             <div class="template-demo mt-2">
+						             	<button class="btn btn-outline-dark btn-icon-text"> 
+						             		<i class="fa fa-apple btn-icon-prepend mdi-36px"></i>
+						             		<span class="d-inline-block text-left"> 
+						             		<small class="font-weight-light d-block">Available on the</small> App Store 
+						             		</span> 
+						             	</button> 
+						             	<button class="btn btn-outline-dark btn-icon-text"> 
+							             	<i class="fa fa-android btn-icon-prepend mdi-36px"></i> 
+							             	<span class="d-inline-block text-left"> 
+							             	<small class="font-weight-light d-block">Get it on the</small> Google Play 
+							             	</span> 
+						             	</button> 
+				             </div>
+				         </div>
+				     </div>
+				 </div>
+	</div>
+
+</div>
+
+
+
+
+
+ <!-- thanh chuyển phân trang -->
+<nav aria-label="Page navigation example" th:if = "${totalPages}!= null" th:fragment="myPageItem">
+  <ul class="pagination justify-content-center">
+  
+  		<li class="page-item">
+	      <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/home/product/page/1?sortField='+${sortField}+ '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">đầu</a>
+	      <a class="page-link" th:unless="${currentPage > 1}">đầu</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" th:if="${currentPage <= totalPages && currentPage > 1}" th:href="@{'/home/product/page/'+${currentPage-1} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">trước</a>
+	      <a class="page-link" th:unless="${currentPage > 1}">trước</a>
+	    </li>
+	    <li class="page-item" th:each="i:${#numbers.sequence(1,totalPages)}">
+	    	<a class="page-link" th:if="${currentPage!=i}" th:href="@{'/home/product/page/'+${i} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir} +${keyword != null ? '&keyword=' + keyword: '' } }">[[${i}]]</a>
+	    	<a class="page-link" th:unless="${currentPage != i}">[[${i}]]</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/home/product/page/'+${currentPage+1} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">tiếp</a>
+	      <a class="page-link" th:unless="${currentPage < totalPages}">tiếp</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/home/product/page/'+${totalPages} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">cuối</a>
+	      <a class="page-link" th:unless="${currentPage < totalPages}">cuối</a>
+	    </li>
+  </ul>
+  <p>tổng: [[${totalItems}]]</p>
+</nav>
+<div th:insert="footer :: myFooter"></div>
+</body>
+</html>

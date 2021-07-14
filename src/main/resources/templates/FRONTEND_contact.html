@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>admin</title>
+<link th:href="@{../../../css/form.css}" rel="stylesheet" media="all">
+<div th:replace="header :: myHeader"></div>
+</head>
+<style>
+	body{
+	width: 1519.2px;
+	}
+</style>
+<body>
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3724.082815835905!2d105.80587871488342!3d21.02937208599813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1596387732873!5m2!1svi!2s" width="1519.2px" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+	<div class="jumbotron">
+		<div class="col-sm-8 mx-auto">
+			<h1>CÔNG TY NEXTSOL</h1>
+			<p>
+				ĐỊA CHỈ: <a href="https://www.google.com/maps/@9.779349,105.6189045,11z?hl=vi-VN"><code>SỐ 2-NGÁCH 18-NGÕ 629-KIM MÃ-BA ĐÌNH-HÀ NỘI</code></a><br>
+				WEBSITE: <a href="https://nextsol.vn/"><code>nextsol.vn</code></a><br>
+				EMAIL: <a href="#"><code>tienphuong1324@gmail.com</code></a><br>
+				ĐIỆN THOẠI: <code>0981120071</code>
+			
+		</div>
+		
+		
+		</div>
+		<div class="card-body">
+					<div style="text-align: center;">
+						<h3>Câu hỏi</h3>
+						<h5 th:text="${tb}" style="background-color: green;"></h5>
+					</div>
+                    <form action="#" th:action="@{/home/contact/questionSave}" method="POST" th:object="${question}">
+                    
+                        <div class="form-row">
+                            <div class="name">tên của bạn</div>
+                            <div class="value">
+                                <input class="input--style-6" type="text" placeholder="tên của bạn..." required name="name">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="name">email</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" type="email" placeholder="email..." required name="email">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="name">số điện thoại</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" type="number" placeholder="số điện thoại..." required name="sdt">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-row">
+                            <div class="name">nội dung</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <textarea class="textarea--style-6" placeholder="nội dung..." required name="content"></textarea>
+                                </div>
+                            </div>
+                        </div>
+       
+                        
+                        <div class="card-footer" style="text-align: center;">
+		                    <button id="enter" class="btn btn--radius-2 btn--blue-2" type="submit" style="margin-left: 150px;background-color: #a7b0aa;">LƯU LẠI</button>
+		                </div>
+                    </form>
+                </div>
+	
+			
+			
+
+
+
+<div th:insert="footer :: myFooter"></div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="myHeader">
+<head>
+<meta charset="utf8">
+<title>Insert title here</title>
+<link rel="shortcut icon" type="image/png" href="@../../../../../../css/img/logoPX.jpg"/>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<style>
+#quantri:hover{
+	text-decoration: none;
+	background: #03A697;
+	color: white;
+}
+#quantri{
+padding: 25px;
+color: black;
+}
+.dropdown_a{
+	padding-top:17px;
+}
+.dropbtn {
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown button{
+	background-color: white;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: #03A697;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #77d1d1;
+  color: white;
+  text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #03A697;
+  color: white;
+}
+#header{
+	width: 1519.2px;
+	height: 80px;
+	display: flex;
+}
+#li{
+	float: left;
+	margin-left:35px;
+	font: 16.5px Roboto;
+}
+#ul {
+	width: 1519.2px;
+	list-style: none;
+	margin-left: 100px;
+	padding-top: 10px;
+}
+</style>
+<body>			
+	<header id="header" class="">
+		<ul id="ul">					
+			<li id="li"><a class="navbar-brand" href="#"><img width="60" height="60" src="@../../../../../../../../css/img/logoPX.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="td3"></a></li>
+			<div id="tach_li">
+			
+				<!-- TRANG CHU -->
+				<div class="dropdown" style="float:left;margin-top: 15.5px;">
+				  <a class="dropbtn" style="color: black;text-decoration: none;" th:href="@{/home}">TRANG CHỦ</a>
+				</div>
+				
+				<!-- GIOI THIEU -->
+				<div class="dropdown" style="float:left;">
+				  <button class="dropbtn">GIỚI THIỆU</button>
+				   <div class="dropdown-content" style="left:0;">
+						<div>
+							<a class="dropdown-item" th:href="@{/home/introduct/aboutUs}">VỀ CHÚNG TÔI</a>
+							 <a class="dropdown-item" th:href="@{/home/introduct/gt}">GIÁ TRỊ CỐT LÕI</a>
+							  <a class="dropdown-item" th:href="@{/home/introduct/cn}">CON NGƯỜI</a>
+						</div>
+					</div>
+				</div>
+				
+			
+		 
+		 		<!-- DICH VU  -->
+		 		<div class="dropdown" style="float:left;">
+					<button class="dropbtn">DỊCH VỤ</button>
+					 <div class="dropdown-content" style="left:0;">
+						<div th:each="s,iterStat : ${serviceAll}">
+							<a class="dropdown-item" th:href="@{/home/service/{id}/{alt}(id=${s.id},alt=${s.alt_name})}"><p th:text="${s.service_name}"></p></a>
+						</div>
+					</div>
+				</div>
+					
+			 
+			 <!-- SAN PHAM  -->
+				<div class="dropdown" style="float:left;">
+				  <button class="dropbtn">SẢN PHẨM</button>
+				  <div class="dropdown-content" style="left:0;">
+					 		<a class="dropdown-item" th:href="@{/home/product}">GAME NỔI BẬT</a>
+							<a class="dropdown-item" th:href="@{/home/product}">APP NỔI BẬT</a>
+					 
+					</div>
+				</div>
+				
+				<!-- TUYEN DUNG  -->
+				<div class="dropdown" style="float:left;">
+				  <button class="dropbtn">TUYỂN DỤNG</button>
+				  <div class="dropdown-content" style="left:0;">
+					 		<a class="dropdown-item" th:href="@{/home/HRpolicies}">CHÍNH SÁCH NHÂN SỰ</a>
+							<a class="dropdown-item" th:href="@{/home/recruitment}">THÔNG TIN TUYỂN DỤNG</a>
+					</div>
+				</div>
+				
+				<!-- VAN HOA -->
+				<div class="dropdown" style="float:left;">
+				  <button class="dropbtn">VĂN HÓA</button>
+				  <div class="dropdown-content" style="left:0;">
+							<a class="dropdown-item" th:href="@{/home/new}">BẢN TIN CU-ĐƠ</a> 
+							<a class="dropdown-item" th:href="@{/home/new}">SỰ KIỆN NỔI BẬT</a>
+					</div>
+				</div>
+				
+				
+				<!-- LIEN HE  -->
+				<div class="dropdown" style="float:left;">
+				  <button class="dropbtn">LIÊN HỆ</button>
+				  <div class="dropdown-content" style="left:0;">
+							<a class="dropdown-item" th:href="@{/home/contact}">ĐỊA CHỈ & CÂU HỎI</a> 
+							<a class="dropdown-item" th:href="@{/home/comment}">NHẬN XÉT CỦA KHÁCH HÀNG</a>
+					</div>
+				</div>
+				
+				
+				<!-- QUAN TRI  -->
+				<div class="dropdown_a" style="float:left;">
+				  <a id="quantri"  th:href="@{/login}">QUẢN TRỊ</a>
+				  <div class="dropdown-content" style="left:0;">
+					</div>
+				</div>
+			</div>
+			
+		</ul>
+	</header>
+	
+	
+	
+				  
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
+</html>

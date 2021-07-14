@@ -1,0 +1,30 @@
+.mdi-36px {
+	font-size: 39px;
+	margin-right: 5px
+}
+
+.container {
+	margin-top: 0px
+}
+
+.template-demo {
+	text-align: center;
+}
+
+.card {
+	width: 18rem;
+	text-align: center;
+}
+
+#product {
+	border-radius: 70px;
+}
+
+#page-content {
+	margin-bottom: 20px;
+}
+
+#product {
+	width: 250px;
+	height: 250px;
+}

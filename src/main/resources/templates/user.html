@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>admin-user</title>
+<div th:replace ="navbarAdmin :: mynavbarAdmin"></div>
+</head>
+<style>
+	body{
+	width: 1519.2px;
+	}
+</style>
+<body>
+<div sec:authorize="isAuthenticated()" style="text-align: center;">
+	Welcome <b><span sec:authentication="name">Username</span></b>
+	&nbsp;
+	<span sec:authentication="principal.authorities"></span>
+</div>
+<div class="card text-center" style="background-color: #a7b0aa">
+  <div class="card-header"><h4>QUẢN LÝ NGƯỜI DÙNG</h4></div>
+</div>
+<h4 th:object="${tb}"></h4>
+
+<div style="width: 1519.2px;height: 100px;display: flex;">
+
+	<div style="margin-top: 33px;width: 759.6px">
+        <a th:href="@{/admin/user/create}">      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">THÊM MỚI</button></a>
+	</div>
+    <form class="form-inline my-2 my-lg-0" th:action="@{/admin/user/page/1}" style="text-align: center;width: 759.6px;margin-left:850px">
+	    <input type="hidden" name="sortField" th:value="${sortField}">
+		<input type="hidden" name="sortDir" th:value="${sortDir}">
+		
+      <input class="form-control mr-sm-2" type="search" th:value="${keyword}" aria-label="Search" style="width: 200px;height: 40px" name="keyword">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">TÌM KIẾM</button>
+    </form><br>
+
+</div>
+
+			<table>
+					<tr>
+				<th>Stt</th>
+				<th>Họ và tên</th>
+				<th>Email</th>
+				<th>Tên đăng nhập</th>
+				<th>Người tạo</th>
+				<th>Ngày tạo</th>
+				<th>Người sửa</th>
+				<th>Ngày sửa</th>
+				<th sec:authorize="hasAnyAuthority('ADMIN')">Quyền</th>
+				<th sec:authorize="hasAnyAuthority('ADMIN')">Phân quyền</th>
+				<th>Sửa</th>
+				<th>Xóa</th>
+			</tr>
+			<tbody>
+				<tr th:each="u,iterStat : ${list}">
+					<td th:text="${iterStat.count}"></td>
+					<td th:text="${u.fullname}"></td>
+					<td th:text="${u.email}"></td>
+					<td th:text="${u.username}"></td>
+					<td th:text="${u.create_by}"></td>
+					<td th:text="${u.create_date}"></td>
+					<td th:text="${u.modifiled_by}"></td>
+					<td th:text="${u.modifiled_date}"></td>
+					<td sec:authorize="hasAnyAuthority('ADMIN')" th:text="${u.roles}"></td>
+					<td sec:authorize="hasAnyAuthority('ADMIN')"><a th:href="@{/admin/userRole/{id}(id=${u.id})}">phân quyền</a></td>
+					<td><a th:href="@{/admin/user/{id}/edit(id=${u.id})}">Cập Nhật</a></td>
+					<td><a th:href="@{/admin/user/{id}/delete(id=${u.id})}" onclick="if(!(confirm('Ban co chac chan muon xoa khong?'))) return false">Xóa</a></td>
+				</tr>
+			</table>
+			
+			
+<!-- thanh chuyển phân trang -->
+<nav aria-label="Page navigation example" th:if = "${totalPages}!= null" th:fragment="myPageItem">
+  <ul class="pagination justify-content-center">
+  
+  		<li class="page-item">
+	      <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/admin/user/page/1?sortField='+${sortField}+ '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">đầu</a>
+	      <a class="page-link" th:unless="${currentPage > 1}">đầu</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" th:if="${currentPage <= totalPages && currentPage > 1}" th:href="@{'/admin/user/page/'+${currentPage-1} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">trước</a>
+	      <a class="page-link" th:unless="${currentPage > 1}">trước</a>
+	    </li>
+	    <li class="page-item" th:each="i:${#numbers.sequence(1,totalPages)}">
+	    	<a class="page-link" th:if="${currentPage!=i}" th:href="@{'/admin/user/page/'+${i} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir} +${keyword != null ? '&keyword=' + keyword: '' } }">[[${i}]]</a>
+	    	<a class="page-link" th:unless="${currentPage != i}">[[${i}]]</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/admin/user/page/'+${currentPage+1} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">tiếp</a>
+	      <a class="page-link" th:unless="${currentPage < totalPages}">tiếp</a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/admin/user/page/'+${totalPages} + '?sortField='+${sortField} + '&sortDir=' + ${sortDir}+${keyword != null ? '&keyword=' + keyword: '' } }">cuối</a>
+	      <a class="page-link" th:unless="${currentPage < totalPages}">cuối</a>
+	    </li>
+  </ul>
+  <p>tổng: [[${totalItems}]]</p>
+</nav>
+
+<div th:insert="footer :: myFooter"></div>
+</body>
+</html>

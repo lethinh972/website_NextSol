@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>admin</title>
+<div th:replace="header :: myHeader"></div>
+<link rel="stylesheet" type="text/css" href="@../../../../../css/service.css?v1">
+</head>
+<style>
+	body{
+	width: 1519.2px;
+	}
+</style>
+<body>
+
+	<div class="bocuc">
+ 
+	<div class="trai">
+	
+			  <ul th:each="s:${serviceAll}">
+			    <li><a class="dropdown-item" th:href="@{/home/service/{id}/{alt}(id=${s.id},alt=${s.alt_name})}"><p th:text="${s.service_name}"></p></a></li>
+			  </ul>
+			
+			  
+			  <div class="card mb-3">
+				  <img src="https://cmcts.com.vn/media/cache/data/JN5nokNySO-cr-1366x675.jpg" class="card-img-top" alt="...">
+				  <div class="card-body">
+				    <h5 class="card-title">0981120071</h5>
+				    <p class="card-text">địa chỉ: SỐ 2-NGÁCH 18-NGÕ 629-KIM MÃ-BA ĐÌNH-HÀ NỘI</p>
+				    <p class="card-text">WEBSITE: <a href="https://nextsol.vn/"><code>nextsol.vn</code></a></p>
+				    <p class="card-text">EMAIL: <a href="#"><code>tienphuong1324@gmail.com</code></a></p>
+				    <p class="card-text">ĐIỆN THOẠI: 0981120071</p>
+				  </div>
+			  </div>
+	
+	 </div>
+	 
+	 <div class="phai">
+	 
+	 
+				 <div class="card mb-3" th:each="hr,iterStat : ${award}">
+				  <img th:src="${hr.image}" class="card-img-top" alt="..." style="height: 400px">
+				  <div class="card-body">
+			        <h5 class="card-title" th:text="${hr.name}"></h5>
+			        <p class="card-text" th:utext="${hr.description}"><p>
+			      </div>
+				</div>
+	</div>
+</div>		
+			
+
+
+
+
+<div th:insert="footer :: myFooter"></div>
+</body>
+</html>

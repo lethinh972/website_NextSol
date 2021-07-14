@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>admin</title>
+<link th:href="@{../../../css/form.css}" rel="stylesheet" media="all">
+<div th:replace="header :: myHeader"></div>
+</head>
+<style>
+	body{
+	width: 1519.2px;
+	}
+</style>
+<body>
+					<div style="text-align: center;">
+						<h3>Nhận xét của khách hàng</h3>
+						<h5 th:text="${tb}" style="background-color: green;"></h5>
+					</div>
+					
+<div class="card-body">
+                    <form action="#" th:action="@{/home/Savecomment}" th:object="${customercomment}"  method="POST">
+                    	<input type="hidden" th:field="*{id}" />
+                    	<input type="hidden" th:field="*{created_at}" />
+                    	<input type="hidden" th:field="*{updated_at}" />
+                    
+                        <div class="form-row">
+                            <div class="name">tên người comment</div>
+                            <div class="value">
+                                <input class="input--style-6" type="text" placeholder="tên người comment..." required th:field="*{name}">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="name">tên công ty</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-6" type="text" placeholder="hãy nhập tên công ty..." required th:field="*{company}">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-row">
+                            <div class="name">nội dung comment</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <textarea class="textarea--style-6" name="message" placeholder="nội dung comment..." th:field="*{comment}"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+     
+                        
+                       <div class="card-footer" style="text-align: center;">
+		                    <button id="enter" class="btn btn--radius-2 btn--blue-2" type="submit" style="margin-left: 150px;background-color: #a7b0aa;">LƯU LẠI</button>
+		                </div>
+                    </form>
+                </div>
+			
+			
+
+
+
+<div th:insert="footer :: myFooter"></div>
+</body>
+</html>

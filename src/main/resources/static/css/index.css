@@ -1,0 +1,111 @@
+#tieude{
+	width: 1519.2px;
+	height: 230px;
+	display: flex;
+}
+#bocuc_tieude{
+	width: 1135px;
+	height:auto;
+	display: flex;
+	margin-left: 180px;
+	text-align: center;
+}
+#bocuc_tieude .tieude1{
+	position:relative;
+	right:0px;
+	left:0px;
+	animation-name:move;
+	animation-duration:5s;
+	animation-iteration-count:infinite;
+	animation-delay:4.64s;
+}
+#bocuc_tieude .tieude2{
+	position:relative;
+	right:0px;
+	left:0px;
+	animation-name:move;
+	animation-duration:5s;
+	animation-iteration-count:infinite;
+	animation-delay:3s;
+}
+#bocuc_tieude .tieude3{
+	position:relative;
+	right:0px;
+	left:0px;
+	animation-name:move;
+	animation-duration:5s;
+	animation-iteration-count:infinite;
+	animation-delay:1.85s;
+}
+@keyframes move{
+			0%{
+                bottom:0px;
+                 animation-timing-function: ease-out;
+            }
+            20%{
+                bottom:40px;
+                animation-timing-function: ease-out;
+            }
+            40%{
+                bottom:0px;
+                animation-timing-function: ease-out;
+            }
+        }
+ 
+	#dvnb img{
+		transition: 1s;
+	}
+	#dvnb:hover img{
+	 	transform: scale(1.1);
+	 	transition: 1s;
+	}
+	#duAn{
+	text-decoration: none;
+	transition: 1s;
+	
+	}
+	#duAn button{
+	margin-top: 5px;
+	background-color: white
+	}
+	
+	#duAn h5{
+	background-color: #65ada4
+	}
+	
+	#duAn :hover{
+		transform: scale(0.9);
+	 	transition: 1s;
+	 	
+	}
+	#nhanxet_hover :hover{
+		background: #ef643e;
+		color:white;
+	}
+	
+	/* ban tin noi bat */
+	.slider {
+	  margin:auto;
+	  background-color:#698F78;
+	  width: 100%;
+	  max-width:1320px;
+	  height:auto;
+	  display: flex;
+	  overflow-x: auto;
+	}
+	.slide {
+	  width: 4000px;
+	  flex-shrink: 0;
+	  height: auto;
+	}
+	.slide .row{
+	text-align: center;
+	}
+	.slide #dvnb{
+		transform: scale(0.9);
+	 	transition: 1s;
+	 	}
+	.slide a img{
+	width: 400px;
+	height: 300px;
+	}
